@@ -15,23 +15,18 @@ board::board(sf::Event &event) {
 
 void board::render_board() {
 
-  const float x_offset = static_cast<float>(windowSize.x - windowSize.y) / 2.f;
-  const float square_size = static_cast<float>(windowSize.y) / 8.f;
-
-  render_texture.create(windowSize.x, windowSize.y);
-
   for (int i = 0; i < 8; i++) {
     for (int j = 0; j < 8; j++) {
 
-      render_square(x_offset, square_size, i, j);
+      render_square(i, j);
 
-      render_piece(x_offset, square_size, i, j);
+      render_piece(i, j);
 
-      render_algebraic_notation(i, j, x_offset, square_size);
+      render_algebraic_notation(i, j);
     }
   }
 }
-void board::render_square(const float x_offset, const float square_size, int i, int j) {
+void board::render_square(int i, int j) {
   sf::RectangleShape currSquare({square_size, square_size});
   currSquare.setFillColor((i + j) % 2 == 0 ? white_square : black_square);
   currSquare.setPosition(x_offset + static_cast<float>(j) * square_size, (static_cast<float>(i) * square_size));
@@ -39,7 +34,7 @@ void board::render_square(const float x_offset, const float square_size, int i, 
   render_texture.draw(currSquare);
   render_texture.display();
 }
-void board::render_piece(const float x_offset, const float square_size, int i, int j) {
+void board::render_piece(int i, int j) {
   pieces p;
   sf::Text text(p.black_king, free_sarif_font, std::floor(square_size));
   text.setFillColor(sf::Color::Black);
@@ -50,7 +45,7 @@ void board::render_piece(const float x_offset, const float square_size, int i, i
   render_texture.display();
 }
 
-void board::render_algebraic_notation(int i, int j, float x_offset, float square_size) {
+void board::render_algebraic_notation(int i, int j) {
 
   if (i == 7) {
     sf::Text text(alg_notation_letter_map.at(j), open_sans_font, std::floor(square_size / 3.f));
@@ -81,6 +76,9 @@ void board::drawBoard(sf::RenderWindow &render_window) const {
 }
 
 void board::init_() {
+  x_offset = static_cast<float>(windowSize.x - windowSize.y) / 2.f;
+  square_size = static_cast<float>(windowSize.y) / 8.f;
+  render_texture.create(windowSize.x, windowSize.y);
   set_free_sarif_font();
   set_open_sans_font();
   set_alg_notation_letter_map();

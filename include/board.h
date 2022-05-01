@@ -20,14 +20,17 @@ private:
   sf::Font open_sans_font;
   std::map<int, std::string> alg_notation_letter_map;
   std::map<int, int> alg_notation_number_map;
-  void render_algebraic_notation(int i, int j, float x_offset, float square_size);
-  void render_piece(float x_offset, float square_size, int i, int j);
+  float x_offset{};
+  float square_size{};
+  void render_square(int i, int j);
+  void render_piece(int i, int j);
+  void render_algebraic_notation(int i, int j);
   void set_free_sarif_font();
   void set_open_sans_font();
   void set_alg_notation_letter_map();
   void set_alg_notation_number_map();
   void init_();
-  void render_square(float x_offset, float square_size, int i, int j);
+
 };
 
 #endif // _BOARD_H_
