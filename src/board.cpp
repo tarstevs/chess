@@ -4,6 +4,12 @@
 #include "board.h"
 #include "pieces.h"
 
+board::board(sf::Vector2u windowSize) : windowSize(windowSize) {}
+
+board::board(sf::Event &event) {
+  windowSize = {event.size.width, event.size.height};
+}
+
 std::string board::get_letter(int j) {
   std::map<int, std::string> m_let{{0, "a"}, {1, "b"}, {2, "c"}, {3, "d"}, {4, "e"}, {5, "f"}, {6, "g"}, {7, "h"}};
   return m_let.at(j);
@@ -49,7 +55,7 @@ void board::render_algebraic_notation(int i, int j, float x_offset, float square
 
 }
 
-void board::render_board(sf::Vector2u windowSize) {
+void board::render_board() {
 
   const float x_offset = static_cast<float>(windowSize.x - windowSize.y) / 2.f;
   const float square_size = static_cast<float>(windowSize.y) / 8.f;
@@ -92,3 +98,4 @@ void board::render_board(sf::Vector2u windowSize) {
 void board::drawBoard(sf::RenderWindow &render_window) const {
   render_window.draw(sf::Sprite(render_texture.getTexture()));
 }
+

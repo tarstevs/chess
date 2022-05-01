@@ -5,11 +5,13 @@
 
 class board {
 public:
-  void render_board(sf::Vector2u windowSize);
+  explicit board(sf::Vector2u windowSize);
+  explicit board(sf::Event &event);
+  void render_board();
   void drawBoard(sf::RenderWindow &render_window) const;
 
 private:
-
+  sf::Vector2u windowSize{1000, 1000};
   sf::RenderTexture render_texture;
 
   sf::Color white_square = sf::Color(254, 232, 209);
