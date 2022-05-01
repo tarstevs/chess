@@ -3,13 +3,11 @@
 
 #include <SFML/Graphics.hpp>
 
-class game_loop
-{
+class game_loop {
 public:
-	game_loop();
-	void run();
-private:
-	sf::View getLetterboxView(sf::View view, int windowWidth, int windowHeight);
+  game_loop();
+  static void run();
+
 };
 
 #endif // _HELLO_H_
