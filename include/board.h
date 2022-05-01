@@ -13,8 +13,8 @@ public:
 private:
   sf::Vector2u windowSize;
   sf::RenderTexture render_texture;
-  sf::Color white_square = sf::Color(254, 232, 209);
-  sf::Color black_square = sf::Color(83, 120, 99);
+  sf::Color white_square_color = sf::Color(238, 238, 211);
+  sf::Color black_square_color = sf::Color(118, 150, 86);
   sf::Color window_background_color = sf::Color(169, 169, 169);
   sf::Font free_sarif_font;
   sf::Font open_sans_font;

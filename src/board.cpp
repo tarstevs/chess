@@ -20,15 +20,15 @@ void board::render_board() {
 
       render_square(i, j);
 
-      render_piece(i, j);
-
       render_algebraic_notation(i, j);
+
+      render_piece(i, j);
     }
   }
 }
 void board::render_square(int i, int j) {
   sf::RectangleShape currSquare({square_size, square_size});
-  currSquare.setFillColor((i + j) % 2 == 0 ? white_square : black_square);
+  currSquare.setFillColor((i + j) % 2 == 0 ? white_square_color : black_square_color);
   currSquare.setPosition(x_offset + static_cast<float>(j) * square_size, (static_cast<float>(i) * square_size));
 
   render_texture.draw(currSquare);
@@ -36,8 +36,10 @@ void board::render_square(int i, int j) {
 }
 void board::render_piece(int i, int j) {
   pieces p;
-  sf::Text text(p.black_king, free_sarif_font, std::floor(square_size));
-  text.setFillColor(sf::Color::Black);
+  sf::Text text(p.bishop, free_sarif_font, std::floor(square_size));
+  text.setFillColor(p.white_piece_color);
+  text.setOutlineColor(sf::Color(0, 0, 0));
+  text.setOutlineThickness(1);
   text.setPosition(square_size / 8.f + x_offset + static_cast<float>(j) * square_size,
                    -square_size / 8.f + (static_cast<float>(i) * square_size));
 
@@ -48,18 +50,18 @@ void board::render_piece(int i, int j) {
 void board::render_algebraic_notation(int i, int j) {
 
   if (i == 7) {
-    sf::Text text(alg_notation_letter_map.at(j), open_sans_font, std::floor(square_size / 3.f));
-    auto letter_color = j % 2 == 0 ? sf::Color(254, 232, 209) : sf::Color(83, 120, 99);
+    sf::Text text(alg_notation_letter_map.at(j), open_sans_font, std::floor(square_size / 5.8f));
+    auto letter_color = j % 2 == 0 ? white_square_color : black_square_color;
     text.setFillColor(letter_color);
-    text.setPosition(square_size / 1.35f + x_offset + static_cast<float>(j) * square_size,
-                     square_size / 1.7f + static_cast<float>(i) * square_size);
+    text.setPosition(square_size / 1.2f + x_offset + static_cast<float>(j) * square_size,
+                     square_size / 1.3f + static_cast<float>(i) * square_size);
 
     render_texture.draw(text);
     render_texture.display();
   }
 
   if (j == 0) {
-    sf::Text text(std::to_string(alg_notation_number_map.at(i)), open_sans_font, std::floor(square_size / 3.f));
+    sf::Text text(std::to_string(alg_notation_number_map.at(i)), open_sans_font, std::floor(square_size / 5.8f));
     auto letter_color = i % 2 == 1 ? sf::Color(254, 232, 209) : sf::Color(83, 120, 99);
     text.setFillColor(letter_color);
     text.setPosition(square_size / 18.f + x_offset + static_cast<float>(j) * square_size,
@@ -91,7 +93,7 @@ void board::set_free_sarif_font() {
 }
 
 void board::set_open_sans_font() {
-  if (!open_sans_font.loadFromFile("font/OpenSans-Regular.ttf")) {
+  if (!open_sans_font.loadFromFile("font/OpenSans-ExtraBold.ttf")) {
     // error...
   }
 }
