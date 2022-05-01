@@ -7,9 +7,3 @@ is `add-auto-load-safe-path /path/to/project/root/.gdbinit`
 
 * set auto-load local-gdbinit on
 * add-auto-load-safe-path /home/jason/dev/chess/.gdbinit
-
-#### Acknowledgements
-
-Art for chess pieces are being used under the CC BY-SA 3.0 license. The creator of the art requested the following
-copyright/attribution notice:
-JohnPablok's improved Cburnett chess set.
