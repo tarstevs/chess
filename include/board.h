@@ -24,7 +24,7 @@ private:
   auto func(T obj, int i, int j, float x_offset, float square_size);
   static std::string get_letter(int j);
   static int get_number(int i);
-  void render_pieces(const float x_offset, const float square_size, int i, int j, const sf::Font &font);
+  void render_pieces(float x_offset, float square_size, int i, int j);
   void set_free_sarif_font();
   void set_open_sans_font();
   void init_();

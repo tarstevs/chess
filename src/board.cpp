@@ -40,15 +40,15 @@ void board::render_board() {
       render_texture.draw(currSquare);
       render_texture.display();
 
-      render_pieces(x_offset, square_size, i, j, free_sarif_font);
+      render_pieces(x_offset, square_size, i, j);
 
       render_algebraic_notation(i, j, x_offset, square_size);
     }
   }
 }
-void board::render_pieces(const float x_offset, const float square_size, int i, int j, const sf::Font &font) {
+void board::render_pieces(const float x_offset, const float square_size, int i, int j) {
   pieces p;
-  sf::Text text(p.black_king, font, std::floor(square_size));
+  sf::Text text(p.black_king, free_sarif_font, std::floor(square_size));
   text.setFillColor(sf::Color::Black);
   text.setPosition(square_size / 8.f + x_offset + static_cast<float>(j) * square_size,
                    -square_size / 8.f + (static_cast<float>(i) * square_size));

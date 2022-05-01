@@ -76,3 +76,6 @@
 1	390	1651403139482928836	CMakeFiles/chess.dir/src/game_loop.cpp.o	32aaac15b5f2e322
 1	579	1651403139670937206	CMakeFiles/chess.dir/src/board.cpp.o	545f0c5bad18f936
 579	620	1651403139710938987	chess	6c2ec3cc9f6cc57c
+0	401	1651403375060014930	CMakeFiles/chess.dir/src/game_loop.cpp.o	32aaac15b5f2e322
+0	580	1651403375236020817	CMakeFiles/chess.dir/src/board.cpp.o	545f0c5bad18f936
+580	623	1651403375280022288	chess	6c2ec3cc9f6cc57c
