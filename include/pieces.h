@@ -8,35 +8,34 @@ public:
   pieces() {
     init_();
   }
-  char32_t black_king;
+  char32_t white_king{};
+  char32_t white_queen{};
+  char32_t white_rook{};
+  char32_t white_bishop{};
+  char32_t white_knight{};
+  char32_t white_pawn{};
+
+  char32_t black_king{};
+  char32_t black_queen{};
+  char32_t black_rook{};
+  char32_t black_bishop{};
+  char32_t black_knight{};
+  char32_t black_pawn{};
 private:
-  std::string cpp20_codepoint_to_utf8(char32_t cp) // C++20 Standard
-  {
-    using codecvt_32_8_type = std::codecvt<char32_t, char8_t, std::mbstate_t>;
-
-    struct codecvt_utf8
-        : public codecvt_32_8_type {
-      explicit codecvt_utf8(std::size_t refs = 0) : codecvt_32_8_type(refs) {}
-    };
-
-    char8_t utf8[4];
-    char8_t *end_of_utf8;
-
-    char32_t const *from = &cp;
-
-    std::mbstate_t mbs;
-    codecvt_utf8 ccv;
-
-    if (ccv.out(mbs, from, from + 1, from, utf8, utf8 + 4, end_of_utf8))
-      throw std::runtime_error("bad conversion");
-
-    return {reinterpret_cast<char *>(utf8), reinterpret_cast<char *>(end_of_utf8)};
-  }
 
   void init_() {
-    black_king = std::stoul("265A", 0, 16);
-//    char32_t u32 = std::stoul(black_king, 0, 16);
-//    black_king = cpp20_codepoint_to_utf8(u32);
+    white_king = std::stoul("2654", nullptr, 16);
+    white_queen = std::stoul("2655", nullptr, 16);
+    white_rook = std::stoul("2656", nullptr, 16);
+    white_bishop = std::stoul("2657", nullptr, 16);
+    white_knight = std::stoul("2658", nullptr, 16);
+    white_pawn = std::stoul("2659", nullptr, 16);
 
+    black_king = std::stoul("265A", nullptr, 16);
+    black_queen = std::stoul("265B", nullptr, 16);
+    black_rook = std::stoul("265C", nullptr, 16);
+    black_bishop = std::stoul("265D", nullptr, 16);
+    black_knight = std::stoul("265E", nullptr, 16);
+    black_pawn = std::stoul("265F", nullptr, 16);
   }
 };
