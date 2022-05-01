@@ -33,20 +33,23 @@ void board::render_board() {
   for (int i = 0; i < 8; i++) {
     for (int j = 0; j < 8; j++) {
 
-      sf::RectangleShape currSquare({square_size, square_size});
-      currSquare.setFillColor((i + j) % 2 == 0 ? white_square : black_square);
-      currSquare.setPosition(x_offset + static_cast<float>(j) * square_size, (static_cast<float>(i) * square_size));
+      render_square(x_offset, square_size, i, j);
 
-      render_texture.draw(currSquare);
-      render_texture.display();
-
-      render_pieces(x_offset, square_size, i, j);
+      render_piece(x_offset, square_size, i, j);
 
       render_algebraic_notation(i, j, x_offset, square_size);
     }
   }
 }
-void board::render_pieces(const float x_offset, const float square_size, int i, int j) {
+void board::render_square(const float x_offset, const float square_size, int i, int j) {
+  sf::RectangleShape currSquare({square_size, square_size});
+  currSquare.setFillColor((i + j) % 2 == 0 ? white_square : black_square);
+  currSquare.setPosition(x_offset + static_cast<float>(j) * square_size, (static_cast<float>(i) * square_size));
+
+  render_texture.draw(currSquare);
+  render_texture.display();
+}
+void board::render_piece(const float x_offset, const float square_size, int i, int j) {
   pieces p;
   sf::Text text(p.black_king, free_sarif_font, std::floor(square_size));
   text.setFillColor(sf::Color::Black);
