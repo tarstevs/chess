@@ -1,14 +1,15 @@
 #include <SFML/Graphics.hpp>
+#include <cmath>
 
 #include "board.h"
 #include "pieces.h"
 
-std::string get_letter(int j) {
+std::string board::get_letter(int j) {
   std::map<int, std::string> m_let{{0, "a"}, {1, "b"}, {2, "c"}, {3, "d"}, {4, "e"}, {5, "f"}, {6, "g"}, {7, "h"}};
   return m_let.at(j);
 }
 
-int get_number(int i) {
+int board::get_number(int i) {
   std::map<int, int> m_num{{0, 8}, {1, 7}, {2, 6}, {3, 5}, {4, 4}, {5, 3}, {6, 2}, {7, 1}};
   return m_num.at(i);
 }
@@ -25,7 +26,7 @@ void board::render_algebraic_notation(int i, int j, float x_offset, float square
   pieces p;
 
   if (i == 7) {
-    sf::Text text(get_letter(j), font, square_size / 3.f);
+    sf::Text text(get_letter(j), font, std::floor(square_size / 3.f));
     auto letter_color = j % 2 == 0 ? sf::Color(254, 232, 209) : sf::Color(83, 120, 99);
     text.setFillColor(letter_color);
     text.setPosition(square_size / 1.35f + x_offset + static_cast<float>(j) * square_size,
@@ -36,7 +37,7 @@ void board::render_algebraic_notation(int i, int j, float x_offset, float square
   }
 
   if (j == 0) {
-    sf::Text text(std::to_string(get_number(i)), font, square_size / 3.f);
+    sf::Text text(std::to_string(get_number(i)), font, std::floor(square_size / 3.f));
     auto letter_color = i % 2 == 1 ? sf::Color(254, 232, 209) : sf::Color(83, 120, 99);
     text.setFillColor(letter_color);
     text.setPosition(square_size / 18.f + x_offset + static_cast<float>(j) * square_size,
@@ -54,7 +55,6 @@ void board::render_board(sf::Vector2u windowSize) {
   const float square_size = static_cast<float>(windowSize.y) / 8.f;
 
   render_texture.create(windowSize.x, windowSize.y);
-  render_texture.clear(window_background_color);
 
   for (int i = 0; i < 8; i++) {
     for (int j = 0; j < 8; j++) {
@@ -76,7 +76,7 @@ void board::render_board(sf::Vector2u windowSize) {
       // end load font
 
       pieces p;
-      sf::Text text(p.black_king, font, square_size);
+      sf::Text text(p.black_king, font, std::floor(square_size));
       text.setFillColor(sf::Color::Black);
       text.setPosition(square_size / 8.f + x_offset + static_cast<float>(j) * square_size,
                        -square_size / 8.f + (static_cast<float>(i) * square_size));

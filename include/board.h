@@ -17,6 +17,10 @@ private:
   sf::Color window_background_color = sf::Color(169, 169, 169);
 
   void render_algebraic_notation(int i, int j, float x_offset, float square_size);
+  template<typename T>
+  auto func(T obj, int i, int j, float x_offset, float square_size);
+  static std::string get_letter(int j);
+  static int get_number(int i);
 };
 
 #endif // _BOARD_H_

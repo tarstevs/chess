@@ -11,8 +11,6 @@ void game_loop::run() {
   int window_height = 1000;
   sf::RenderWindow render_window(sf::VideoMode(window_width, window_height), "Chess");
 
-  sf::Event event{};
-
   sf::View view = render_window.getDefaultView();
 
   board board;
@@ -21,7 +19,7 @@ void game_loop::run() {
   // Game loop (runs the program as long as the render_window is open).
   while (render_window.isOpen()) {
     // Check all the render_window's events that were triggered since the last iteration of the loop.
-    sf::Event event;
+    sf::Event event{};
     // The pollEvent function returns true if an event was pending, or false if there was none.
     // Note that we use a while loop for our event loop so that all pending events are processed,
     // in case there were several.
@@ -32,8 +30,8 @@ void game_loop::run() {
         render_window.close();
 
       else if (event.type == sf::Event::Resized) {
-        float w = static_cast<float>(event.size.width);
-        float h = static_cast<float>(event.size.height);
+        auto w = static_cast<float>(event.size.width);
+        auto h = static_cast<float>(event.size.height);
         view.setSize({w, h});
         view.setCenter({w / 2.f, h / 2.f});
         render_window.setView(view);
