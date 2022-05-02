@@ -29,18 +29,13 @@ void board::render_board() {
 void board::render_square(int i, int j) {
   sf::RectangleShape currSquare({square_size, square_size});
   currSquare.setFillColor((i + j) % 2 == 0 ? white_square_color : black_square_color);
-  currSquare.setPosition(x_offset + static_cast<float>(j) * square_size, (static_cast<float>(i) * square_size));
+  currSquare.setPosition(x_offset + static_cast<float>(j) * square_size,
+                         (static_cast<float>(i) * square_size));
 
   render_texture.draw(currSquare);
   render_texture.display();
 }
 void board::render_piece(int i, int j) {
-
-  /**`
-   * Feed `get_algebraic_notation(i, j)` into the map called `board_state` to get the piece for the square. But, first,
-   * add all of the `text.blah` crap to pieces so pieces can actually make the pieces
-   */
-
 
   std::string square_alg_notation = get_algebraic_notation(i, j);
   std::string piece_for_square = get_piece_for_square(square_alg_notation);
@@ -111,9 +106,17 @@ void board::init_() {
    *
    */
 
+  /**
+   * **** The solution [to above issue] is to create a y_offset that gets defined here [i.e. directly below].
+   * **** Then I need to conditionally use y_offset (carefully) rather than x_offset everywhere in this file
+   * that x_offset is used.
+ */
+
+
   x_offset = static_cast<float>(windowSize.x - windowSize.y) / 2.f;
   square_size = static_cast<float>(windowSize.y) / 8.f;
   render_texture.create(windowSize.x, windowSize.y);
+
   set_open_sans_font();
   set_alg_notation_letter_map();
   set_alg_notation_number_map();

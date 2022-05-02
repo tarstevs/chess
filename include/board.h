@@ -24,7 +24,7 @@ private:
   sf::Font open_sans_font;
   std::unordered_map<int, std::string> alg_notation_letter_map;
   std::unordered_map<int, int> alg_notation_number_map;
-  float x_offset{};
+  float x_offset = 0.0;
   float square_size{};
   void render_square(int i, int j);
   void render_piece(int i, int j);

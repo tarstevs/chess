@@ -38,7 +38,9 @@ void game_loop::run() {
         auto w = static_cast<float>(event.size.width);
         auto h = static_cast<float>(event.size.height);
         view.setSize({w, h});
+
         view.setCenter({w / 2.f, h / 2.f});
+
         render_window.setView(view);
         board_resizeable.render_board();
 
