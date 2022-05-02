@@ -20,7 +20,7 @@ private:
   sf::Color white_square_color = sf::Color(238, 238, 211);
   sf::Color black_square_color = sf::Color(118, 150, 86);
   sf::Color window_background_color = sf::Color(169, 169, 169);
-  sf::Font free_sarif_font;
+
   sf::Font open_sans_font;
   std::unordered_map<int, std::string> alg_notation_letter_map;
   std::unordered_map<int, int> alg_notation_number_map;
@@ -29,13 +29,14 @@ private:
   void render_square(int i, int j);
   void render_piece(int i, int j);
   void render_algebraic_notation(int i, int j);
-  void set_free_sarif_font();
+
   void set_open_sans_font();
   void set_alg_notation_letter_map();
   void set_alg_notation_number_map();
   void set_initial_board_state();
   void set_indices_to_alg_notation();
   std::string get_algebraic_notation(int i, int j);
+  std::string get_piece_for_square(const std::string &);
   void init_();
 
 };

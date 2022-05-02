@@ -36,21 +36,25 @@ void board::render_square(int i, int j) {
 }
 void board::render_piece(int i, int j) {
 
-  /**
+  /**`
    * Feed `get_algebraic_notation(i, j)` into the map called `board_state` to get the piece for the square. But, first,
    * add all of the `text.blah` crap to pieces so pieces can actually make the pieces
    */
 
-  pieces p;
-  sf::Text text(p.bishop, free_sarif_font, std::floor(square_size));
-  text.setFillColor(p.white_piece_color);
-  text.setOutlineColor(sf::Color(0, 0, 0));
-  text.setOutlineThickness(1);
-  text.setPosition(square_size / 8.f + x_offset + static_cast<float>(j) * square_size,
-                   -square_size / 8.f + (static_cast<float>(i) * square_size));
 
-  render_texture.draw(text);
-  render_texture.display();
+  std::string square_alg_notation = get_algebraic_notation(i, j);
+  std::string piece_for_square = get_piece_for_square(square_alg_notation);
+
+  if (!piece_for_square.empty()) {
+    pieces p;
+    sf::Text
+        sfml_text_for_piece =
+        p.get_positioned_sfml_text_graphic_for_piece(piece_for_square, square_size, x_offset, i, j);
+
+    render_texture.draw(sfml_text_for_piece);
+    render_texture.display();
+  }
+
 }
 
 void board::render_algebraic_notation(int i, int j) {
@@ -87,6 +91,15 @@ std::string board::get_algebraic_notation(int i, int j) {
   return column_index_to_alg_notation_letter.at(j) + row_index_to_alg_notation_num.at(i);
 }
 
+/**
+ * get_piece_for_square Takes the algebraic notation for a square and returns the piece belonging on that square.
+ * @param sqr_alg_notation Algebraic notation for the square of interest.
+ * @return Piece belonging on the square provided as input.
+ */
+std::string board::get_piece_for_square(const std::string &sqr_alg_notation) {
+  return board_state.at(sqr_alg_notation);
+};
+
 void board::init_() {
 
   /**
@@ -101,7 +114,6 @@ void board::init_() {
   x_offset = static_cast<float>(windowSize.x - windowSize.y) / 2.f;
   square_size = static_cast<float>(windowSize.y) / 8.f;
   render_texture.create(windowSize.x, windowSize.y);
-  set_free_sarif_font();
   set_open_sans_font();
   set_alg_notation_letter_map();
   set_alg_notation_number_map();
@@ -112,12 +124,6 @@ void board::init_() {
 /**
  * Methods called by `init_()` appear below
  */
-
-void board::set_free_sarif_font() {
-  if (!free_sarif_font.loadFromFile("font/FreeSerif-4aeK.ttf")) {
-    // error...
-  };
-}
 
 void board::set_open_sans_font() {
   if (!open_sans_font.loadFromFile("font/OpenSans-ExtraBold.ttf")) {
