@@ -29,4 +29,6 @@ private:
   void set_free_sarif_font();
   void init_();
 
+  sf::Color get_piece_color(const std::string &piece_for_square) const;
+  static std::string get_piece_name(const std::string &piece_for_square);
 };

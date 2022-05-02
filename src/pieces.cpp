@@ -13,21 +13,28 @@ sf::Text pieces::get_positioned_sfml_text_graphic_for_piece(const std::string &p
                                                             float y_offset,
                                                             int i,
                                                             int j) {
+
+  sf::Text text(get_char32_piece_code(get_piece_name(piece_for_square)), free_sarif_font, std::floor(square_size));
+  text.setFillColor(get_piece_color(piece_for_square));
+  text.setOutlineColor(sf::Color(0, 0, 0));
+  text.setOutlineThickness(1);
+  text.setPosition(square_size / 8.f + x_offset + static_cast<float>(j) * square_size,
+                   -square_size / 8.f + y_offset + static_cast<float>(i) * square_size);
+  return text;
+}
+std::string pieces::get_piece_name(const std::string &piece_for_square) {
+  size_t index_of_first_piece_letter = piece_for_square.find('_') + 1;
+  std::string piece_name = piece_for_square.substr(index_of_first_piece_letter, piece_for_square.size());
+  return piece_name;
+}
+sf::Color pieces::get_piece_color(const std::string &piece_for_square) const {
   sf::Color piece_color;
   if (piece_for_square.find("white") != std::string::npos) {
     piece_color = white_piece_color;
   } else {
     piece_color = black_piece_color;
   };
-  size_t index_of_first_piece_letter = piece_for_square.find('_') + 1;
-  std::string piece_name = piece_for_square.substr(index_of_first_piece_letter, piece_for_square.size());
-  sf::Text text(get_char32_piece_code(piece_name), free_sarif_font, std::floor(square_size));
-  text.setFillColor(piece_color);
-  text.setOutlineColor(sf::Color(0, 0, 0));
-  text.setOutlineThickness(1);
-  text.setPosition(square_size / 8.f + x_offset + static_cast<float>(j) * square_size,
-                   -square_size / 8.f + y_offset + static_cast<float>(i) * square_size);
-  return text;
+  return piece_color;
 }
 
 char32_t pieces::get_char32_piece_code(const std::string &piece_name) const {
