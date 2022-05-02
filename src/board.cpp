@@ -27,10 +27,15 @@ void board::render_board() {
   }
 }
 void board::render_square(int i, int j) {
+//  sf::Vector2f position;
+//  position.x = ((windowSize.x - imageSize.x) / 2.0f);
+//  position.y = ((windowSize.y - imageSize.y) / 2.0f);
+
+
   sf::RectangleShape currSquare({square_size, square_size});
   currSquare.setFillColor((i + j) % 2 == 0 ? white_square_color : black_square_color);
   currSquare.setPosition(x_offset + static_cast<float>(j) * square_size,
-                         (static_cast<float>(i) * square_size));
+                         y_offset + static_cast<float>(i) * square_size);
 
   render_texture.draw(currSquare);
   render_texture.display();
@@ -44,7 +49,7 @@ void board::render_piece(int i, int j) {
     pieces p;
     sf::Text
         sfml_text_for_piece =
-        p.get_positioned_sfml_text_graphic_for_piece(piece_for_square, square_size, x_offset, i, j);
+        p.get_positioned_sfml_text_graphic_for_piece(piece_for_square, square_size, x_offset, y_offset, i, j);
 
     render_texture.draw(sfml_text_for_piece);
     render_texture.display();
@@ -59,7 +64,7 @@ void board::render_algebraic_notation(int i, int j) {
     auto letter_color = j % 2 == 0 ? white_square_color : black_square_color;
     text.setFillColor(letter_color);
     text.setPosition(square_size / 1.2f + x_offset + static_cast<float>(j) * square_size,
-                     square_size / 1.3f + static_cast<float>(i) * square_size);
+                     square_size / 1.3f + y_offset + static_cast<float>(i) * square_size);
 
     render_texture.draw(text);
     render_texture.display();
@@ -70,7 +75,7 @@ void board::render_algebraic_notation(int i, int j) {
     auto letter_color = i % 2 == 1 ? sf::Color(254, 232, 209) : sf::Color(83, 120, 99);
     text.setFillColor(letter_color);
     text.setPosition(square_size / 18.f + x_offset + static_cast<float>(j) * square_size,
-                     square_size / 25.f + static_cast<float>(i) * square_size);
+                     square_size / 25.f + y_offset + static_cast<float>(i) * square_size);
 
     render_texture.draw(text);
     render_texture.display();
@@ -113,9 +118,15 @@ void board::init_() {
  */
 
 
-  x_offset = static_cast<float>(windowSize.x - windowSize.y) / 2.f;
-  square_size = static_cast<float>(windowSize.y) / 8.f;
-  render_texture.create(windowSize.x, windowSize.y);
+  if (windowSize.x - windowSize.y < 0) {
+    y_offset = static_cast<float>(windowSize.y - windowSize.x) / 2.f;
+    square_size = static_cast<float>(windowSize.x) / 8.f;
+    render_texture.create(windowSize.x, windowSize.y);
+  } else {
+    x_offset = static_cast<float>(windowSize.x - windowSize.y) / 2.f;
+    square_size = static_cast<float>(windowSize.y) / 8.f;
+    render_texture.create(windowSize.x, windowSize.y);
+  }
 
   set_open_sans_font();
   set_alg_notation_letter_map();

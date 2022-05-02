@@ -10,6 +10,7 @@ pieces::pieces() {
 sf::Text pieces::get_positioned_sfml_text_graphic_for_piece(const std::string &piece_for_square,
                                                             float square_size,
                                                             float x_offset,
+                                                            float y_offset,
                                                             int i,
                                                             int j) {
   sf::Color piece_color;
@@ -25,7 +26,7 @@ sf::Text pieces::get_positioned_sfml_text_graphic_for_piece(const std::string &p
   text.setOutlineColor(sf::Color(0, 0, 0));
   text.setOutlineThickness(1);
   text.setPosition(square_size / 8.f + x_offset + static_cast<float>(j) * square_size,
-                   -square_size / 8.f + (static_cast<float>(i) * square_size));
+                   -square_size / 8.f + y_offset + static_cast<float>(i) * square_size);
   return text;
 }
 

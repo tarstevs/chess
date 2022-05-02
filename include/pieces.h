@@ -19,6 +19,7 @@ public:
   sf::Text get_positioned_sfml_text_graphic_for_piece(const std::string &piece_for_square,
                                                       float square_size,
                                                       float x_offset,
+                                                      float y_offset,
                                                       int i,
                                                       int j);
 
