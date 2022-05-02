@@ -8,7 +8,7 @@ public:
   explicit board(sf::Vector2u windowSize);
   explicit board(sf::Event &event);
   void render_board();
-  void drawBoard(sf::RenderWindow &render_window) const;
+  void draw_board(sf::RenderWindow &render_window) const;
 
 private:
   std::unordered_map<std::string, std::string> board_state{};

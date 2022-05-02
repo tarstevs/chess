@@ -16,7 +16,7 @@ void game_loop::run() {
   board board_current(render_window.getSize());
   board_current.render_board();
   render_window.clear();
-  board_current.drawBoard(render_window);
+  board_current.draw_board(render_window);
   render_window.display();
 
   // Game loop (runs the program as long as the render_window is open).
@@ -46,7 +46,7 @@ void game_loop::run() {
         board_resizeable.render_board();
 
         render_window.clear();
-        board_resizeable.drawBoard(render_window);
+        board_resizeable.draw_board(render_window);
         render_window.display();
 
       }

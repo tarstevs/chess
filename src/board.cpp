@@ -79,7 +79,7 @@ void board::render_algebraic_notation(int i, int j) {
 
 }
 
-void board::drawBoard(sf::RenderWindow &render_window) const {
+void board::draw_board(sf::RenderWindow &render_window) const {
   render_window.draw(sf::Sprite(render_texture.getTexture()));
 }
 
