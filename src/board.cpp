@@ -27,10 +27,6 @@ void board::render_board() {
   }
 }
 void board::render_square(int i, int j) {
-//  sf::Vector2f position;
-//  position.x = ((windowSize.x - imageSize.x) / 2.0f);
-//  position.y = ((windowSize.y - imageSize.y) / 2.0f);
-
 
   sf::RectangleShape currSquare({square_size, square_size});
   currSquare.setFillColor((i + j) % 2 == 0 ? white_square_color : black_square_color);
