@@ -98,24 +98,6 @@ std::string board::get_piece_for_square(const std::string &sqr_alg_notation) {
 
 void board::init_() {
 
-  /**
-   * There is a bug here. To see the bug, resize the window starting at any size --super big or super small is fine-- and
-   * then resize only in the "making it narrower" direction. You'll see that when you get to a width less than the width of the
-   * board, the board disappears.
-   *
-   * NOTE THAT THIS DOES **NOT** HAPPEN WHEN YOU DO THE SAME THING BY MAKING THE BOARD SHORTER IN THE VERTICAL DIRECTION!!!
-   *
-   */
-
-  /**
-   * **** The solution [to above issue] is to create a y_offset that gets defined here [i.e. directly below].
-   * **** Then I need to conditionally use y_offset (carefully) rather than x_offset everywhere in this file
-   * that x_offset is used.
- */
-
-
-
-//  x_offset = static_cast<float>(windowSize.x - windowSize.y) / 2.f;
   x_offset = 0;
   square_size = static_cast<float>(windowSize.y) / 8.f;
   render_texture.create(windowSize.x, windowSize.y);

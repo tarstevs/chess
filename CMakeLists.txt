@@ -25,6 +25,7 @@ set(SOURCES
         src/game_loop.cpp
         src/board.cpp
         src/pieces.cpp
+        src/board_view
         )
 
 # Add an executable with the above sources

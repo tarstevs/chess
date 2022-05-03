@@ -1,5 +1,6 @@
 #include "../include/game_loop.h"
 #include "../include/board.h"
+#include "../include/board_view.h"
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -8,7 +9,7 @@ game_loop::game_loop() = default;
 
 void game_loop::run() {
 
-  int window_width = 1000;
+  int window_width = 1300;
   int window_height = 1000;
   sf::RenderWindow render_window(sf::VideoMode(window_width, window_height), "Chess");
   render_window.setVerticalSyncEnabled(true);
@@ -34,17 +35,18 @@ void game_loop::run() {
         render_window.close();
 
       else if (event.type == sf::Event::Resized) {
+
+
+        // make a view for the current window size
+        board_view bv(event, render_window);
+        bv.configure_and_set_view();
+
+
+        // make a board for the current window size
         board board_resizeable(event);
-        auto w = static_cast<float>(event.size.width);
-        auto h = static_cast<float>(event.size.height);
-
-        sf::View view;
-        view.setSize({w, h});
-        view.setCenter({w / 2.f, h / 2.f});
-
-        render_window.setView(view);
         board_resizeable.render_board();
 
+        // draw the board
         render_window.clear();
         board_resizeable.draw_board(render_window);
         render_window.display();
