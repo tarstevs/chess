@@ -114,15 +114,11 @@ void board::init_() {
  */
 
 
-  if (windowSize.x - windowSize.y < 0) {
-    y_offset = static_cast<float>(windowSize.y - windowSize.x) / 2.f;
-    square_size = static_cast<float>(windowSize.x) / 8.f;
-    render_texture.create(windowSize.x, windowSize.y);
-  } else {
-    x_offset = static_cast<float>(windowSize.x - windowSize.y) / 2.f;
-    square_size = static_cast<float>(windowSize.y) / 8.f;
-    render_texture.create(windowSize.x, windowSize.y);
-  }
+
+//  x_offset = static_cast<float>(windowSize.x - windowSize.y) / 2.f;
+  x_offset = 0;
+  square_size = static_cast<float>(windowSize.y) / 8.f;
+  render_texture.create(windowSize.x, windowSize.y);
 
   set_open_sans_font();
   set_alg_notation_letter_map();
