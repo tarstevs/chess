@@ -1,4 +1,6 @@
-
+skip -gfi /usr/include/c++/*/*/*
+skip -gfi /usr/include/c++/*/*
+skip -gfi /usr/include/c++/*
 
 # Skip the Catch library functions  when stepping into
 skip -rfu Catch
