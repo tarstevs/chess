@@ -1,0 +1,8 @@
+# ninja log v5
+1	460	6785988312768291	CMakeFiles/chess.dir/main.cpp.obj	93ca0715d67a22e
+3	486	6785988767905948	CMakeFiles/chess.dir/main.cpp.obj	9df6923a6467b585
+17	496	6785988767986022	CMakeFiles/chess.dir/src/board_view.cpp.obj	330a5e735f24629e
+15	657	6785988769607495	CMakeFiles/chess.dir/src/pieces.cpp.obj	53440fe52584e4af
+4	631	6785989030947333	CMakeFiles/chess.dir/src/game_loop.cpp.obj	a854ff51234283a5
+13	984	6785989034458146	CMakeFiles/chess.dir/src/board.cpp.obj	93ec91208a279a2d
+984	1178	6785989036389306	chess.exe	367a292c9d415788

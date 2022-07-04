@@ -1,0 +1,3 @@
+C:/msys64/home/jreic/dev/chess/debug/CMakeFiles/chess.dir
+C:/msys64/home/jreic/dev/chess/debug/CMakeFiles/edit_cache.dir
+C:/msys64/home/jreic/dev/chess/debug/CMakeFiles/rebuild_cache.dir
