@@ -2,6 +2,7 @@
 #define _BOARD_H_
 
 #include <SFML/Graphics.hpp>
+#include <unordered_map>
 
 class board {
 public:
